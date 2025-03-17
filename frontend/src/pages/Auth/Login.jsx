@@ -5,12 +5,12 @@ import { Link, useNavigate } from "react-router-dom";
 
 import AuthLayout from "../../components/layouts/AuthLayout";
 import Input from "../../components/Inputs/Input";
-import { validateEmail } from "../../utils/validateEmail";
+import { validateEmail } from "../../utils/helper.js";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("null");
+  const [error, setError] = useState(null);
 
   const navigate = useNavigate();
 
