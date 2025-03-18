@@ -19,13 +19,14 @@ export default function SignUp() {
 
   const navigate = useNavigate();
 
-  const handleSignUp = (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
 
     let profilePicUrl = '';
 
     if(!fullName){
       setError("Please enter your full name")
+      
       return
     }
     if(!validateEmail(email)){
@@ -36,7 +37,7 @@ export default function SignUp() {
       setError("Please enter the password")
       return
     }
-
+    console.log("Please enter your full name")
     setError("");
   }
 
@@ -53,7 +54,7 @@ export default function SignUp() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Input
             value={fullName}
-            onChange={(target) => setFullName(target.value)}
+            onChange={({target}) => setFullName(target.value)}
             label='Full Name'
             placeholder='Enter your full name'
             type='text'
@@ -61,7 +62,7 @@ export default function SignUp() {
 
           <Input
             value={email}
-            onChange={(target) => setEmail(target.value)}
+            onChange={({target}) => setEmail(target.value)}
             label='Email Address'
             placeholder='Enter your email address'
             type='email'
@@ -70,7 +71,7 @@ export default function SignUp() {
           <div className="col-span-2">
           <Input
             value={password}
-            onChange={(target) => setPassword(target.value)}
+            onChange={({target}) => setPassword(target.value)}
             label='Password'
             placeholder='Enter your password'
             type='password'
