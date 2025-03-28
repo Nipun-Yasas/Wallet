@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const {addExpense,getAllExpenses,deleteExpense,downloadExpenseExcel} = require('../controllers/expenseController');
+const {addExpense,getAllExpenses,downloadExpenseExcel,deleteExpense} = require('../controllers/expenseController');
 const {protect} = require('../middleware/authMiddleware');
 
 router.post('/add',protect,addExpense);

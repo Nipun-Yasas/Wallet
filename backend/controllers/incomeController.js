@@ -1,7 +1,8 @@
+const express = require('express');
 const xlsx = require('xlsx');
 const Income = require('../models/Income');
 
-addIncome = async (req,res)=>{
+const addIncome = async (req,res)=>{
     const userId = req.user.id;
 
     try{
@@ -27,7 +28,7 @@ addIncome = async (req,res)=>{
     }
 }
 
-getAllIncomes = async (req,res)=>{
+const getAllIncomes = async (req,res)=>{
     const userId = req.user.id;
 
     try{
@@ -39,7 +40,7 @@ getAllIncomes = async (req,res)=>{
     }
 }
 
-deleteIncome = async (req,res)=>{
+const deleteIncome = async (req,res)=>{
 
     try{
         await Income.findByIdAndDelete(req.params.id);
@@ -50,7 +51,7 @@ deleteIncome = async (req,res)=>{
     }
 }
 
-downloadIncomeExcel = async (req,res)=>{
+const downloadIncomeExcel = async (req,res)=>{
     const userId = req.user.id;
 
     try{

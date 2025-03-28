@@ -1,11 +1,11 @@
 const xlsx = require('xlsx');
 const Expense = require('../models/Expense');
 
-addExpense = async (req, res)=>{
+const addExpense = async (req, res)=>{
     const userId = req.user.id;
 
     try {
-        const { icon, category, amount, data } = req.body;
+        const { icon, category, amount, date } = req.body;
 
         if (!category || !amount || !date) {
             return res.status(400).json({ message: "All fields are required" })
@@ -26,7 +26,7 @@ addExpense = async (req, res)=>{
     }
 }
 
-getAllExpenses = async (req, res) => {
+const getAllExpenses = async (req, res) => {
     const userId = req.user.id;
 
     try {
@@ -38,7 +38,7 @@ getAllExpenses = async (req, res) => {
     }
 }
 
-deleteExpense = async (req, res) => {
+const deleteExpense = async (req, res) => {
     try {
         await Expense.findByIdAndDelete(req.params.id);
         res.json({ message: "Expense deleted" });
@@ -49,7 +49,7 @@ deleteExpense = async (req, res) => {
 }
 
 
-downloadExpenseexcel = async (req, res) => {
+const downloadExpenseExcel = async (req, res) => {
     const userId = req.user.id;
 
     try {
@@ -64,8 +64,8 @@ downloadExpenseexcel = async (req, res) => {
         const wb = xlsx.utils.book_new();
         const ws = xlsx.utils.json_to_sheet(data);
         xlsx.utils.book_append_sheet(wb, ws, "Expense");
-        xlsx.writeFile(wb, 'expense_details.xlsx');
-        res.download('expensee_details.xlsx');
+        xlsx.writeFile(wb,'expense_details.xlsx');
+        res.download('expense_details.xlsx');
     }
     catch (error) {
         res.status(500).json({ message: "Server error" });
@@ -73,4 +73,4 @@ downloadExpenseexcel = async (req, res) => {
 }
 
 
-module.exports = { addExpense, getAllExpenses, downloadExpenseexcel, deleteExpense }
+module.exports = { addExpense, getAllExpenses, downloadExpenseExcel, deleteExpense }
