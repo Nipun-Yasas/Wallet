@@ -16,7 +16,7 @@ const addExpense = async (req, res)=>{
             icon,
             category,
             amount,
-            date: new Date(date),
+            date
         });
         await newExpense.save();
         res.status(200).json(newExpense);
