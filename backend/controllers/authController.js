@@ -34,7 +34,7 @@ registerUser = async (req,res)=>{
             token:generateToken(user._id)
         });
     }
-    catch{err}{
+    catch(err){
         res.status(500).json({message:"Error registering user",error:err.message});
     }
 }

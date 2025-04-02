@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useState } from "react";
+import { useState,useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import AuthLayout from "../../components/layouts/AuthLayout";
@@ -8,6 +8,10 @@ import Input from "../../components/Inputs/Input";
 
 import { validateEmail } from "../../utils/helper.js";
 import ProfilePhotoSelector from "../../components/Inputs/ProfilePhotoSelector";
+import { UserContext } from "../../contex/userContext.jsx";
+import {API_PATHS} from "../../utils/apiPaths.js";
+import axiosInstance from "../../utils/axiosInstance.js";
+import uploadImage from "../../utils/uploadimage.js";
 
 export default function SignUp() {
 
@@ -17,12 +21,13 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const [error,setError] = useState(null);
 
+  const {updateUser} = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleSignUp = async (e) => {
     e.preventDefault();
 
-    let profilePicUrl = '';
+    let profileImageUrl = '';
 
     if(!fullName){
       setError("Please enter your full name")
@@ -37,8 +42,40 @@ export default function SignUp() {
       setError("Please enter the password")
       return
     }
-    console.log("Please enter your full name")
+    
     setError("");
+
+    try{
+
+      if(profilePic){
+        const imUploadRes = await uploadImage(profilePic);
+        profileImageUrl = imUploadRes.imageUrl || '';
+      }
+
+      const response = await axiosInstance.post(API_PATHS.AUTH.REGISTER,{
+        fullName,
+        email,
+        password,
+        profileImageUrl
+      });
+
+      const {token,user} = response.data;
+
+      if(token){
+        localStorage.setItem("token",token);
+        updateUser(user);
+        navigate("/dashboard");
+      }
+    }
+    catch(error){
+      if(error.response && error.response.data.message){
+        setError(error.response.data.message);
+      }
+      else{
+        setError("Something went wrong.Please try again.");
+      }
+    }
+
   }
 
   return (
