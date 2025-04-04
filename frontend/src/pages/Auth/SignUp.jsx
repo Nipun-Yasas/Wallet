@@ -8,10 +8,11 @@ import Input from "../../components/Inputs/Input";
 
 import { validateEmail } from "../../utils/helper.js";
 import ProfilePhotoSelector from "../../components/Inputs/ProfilePhotoSelector";
-import { UserContext } from "../../contex/userContext.jsx";
 import {API_PATHS} from "../../utils/apiPaths.js";
 import axiosInstance from "../../utils/axiosInstance.js";
 import uploadImage from "../../utils/uploadimage.js";
+
+import { UserContext } from "../../context/UserContext";
 
 export default function SignUp() {
 

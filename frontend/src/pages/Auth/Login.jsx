@@ -9,7 +9,7 @@ import { validateEmail } from "../../utils/helper.js";
 import axiosInstance from "../../utils/axiosInstance.js";
 import { API_PATHS } from "../../utils/apiPaths.js";
 
-import { UserContext } from "../../contex/userContext.jsx";
+import { UserContext } from "../../context/UserContext";
 
 export default function Login() {
   const [email, setEmail] = useState("");
