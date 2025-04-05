@@ -1,8 +1,13 @@
 import React from 'react'
 
 import DashboardLayout from '../../components/layouts/DashboardLayout'
+import useUserAuth from '../../hooks/useUserAuth'
 
 export default function Home() {
+
+  useUserAuth();
+
+
   return (
     <div>
       <DashboardLayout activeMenu="Dashboard">
