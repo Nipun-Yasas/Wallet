@@ -12,7 +12,7 @@ export default function DashboardLayout({ children, activeMenu }) {
 
       {user && (
         <div className="flex">
-          <div className="max-[1080px]:hiddem">
+          <div className="max-[1080px]:hidden ">
             <SideMenu activeMenu={activeMenu} />
           </div>
 
