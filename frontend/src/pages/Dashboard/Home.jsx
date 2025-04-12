@@ -7,6 +7,7 @@ import axiosInstance from "../../utils/axiosInstance";
 import { API_PATHS } from "../../utils/apiPaths";
 
 import InfoCard from "../../components/Cards/InfoCard";
+import RecentTransactions from "../../components/Dashboard/RecentTransactions";
 import { LuHandCoins, LuWalletMinimal } from "react-icons/lu";
 import { IoMdCard } from "react-icons/io";
 import { addThousandsSeparator } from "../../utils/helper";
@@ -45,9 +46,9 @@ export default function Home() {
   }, []);
 
   return (
-    <div>
       <DashboardLayout activeMenu="Dashboard">
         <div className="my-5 mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <InfoCard
             icon={<IoMdCard />}
             label="Total Balance"
@@ -68,8 +69,15 @@ export default function Home() {
             value={addThousandsSeparator(dashboardData?.totalExpenses|| 0)}
             color="bg-red-500"
           />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+            <RecentTransactions
+            transactions={dashboardData?.recentTransactions}
+            onSeeMore={() => navigate("/expense")}
+            />
+          </div>
         </div>
       </DashboardLayout>
-    </div>
   );
 }
