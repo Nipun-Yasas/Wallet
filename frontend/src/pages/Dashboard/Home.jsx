@@ -9,6 +9,8 @@ import { API_PATHS } from "../../utils/apiPaths";
 import InfoCard from "../../components/Cards/InfoCard";
 import RecentTransactions from "../../components/Dashboard/RecentTransactions";
 import FinanceOverview from "../../components/Dashboard/FinanceOverview";
+import ExpenseTransactions from "../../components/Dashboard/ExpenseTransactions";
+import Last30DaysExpenses from "../../components/Dashboard/Last30DaysExpenses";
 import { LuHandCoins, LuWalletMinimal } from "react-icons/lu";
 import { IoMdCard } from "react-icons/io";
 import { addThousandsSeparator } from "../../utils/helper";
@@ -73,7 +75,7 @@ export default function Home() {
           </div> */}
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-            <RecentTransactions
+            {/* <RecentTransactions
             transactions={dashboardData?.recentTransactions}
             onSeeMore={() => navigate("/expense")}
             />
@@ -82,7 +84,17 @@ export default function Home() {
             totalBalance={dashboardData?.totalBalance || 0}
             totalIncome={dashboardData?.totalIncome || 0}
             totalExpenses={dashboardData?.totalExpenses || 0}
+            /> */}
+
+            {/* <ExpenseTransactions
+            transactions={dashboardData?.last30DaysExpenses?.transactions || []}
+            onSeeMore={() => navigate("/expense")}
             />
+
+            <Last30DaysExpenses
+            data={dashboardData?.last30DaysExpenses?.transactions || []}
+            /> */}
+
           </div>
         </div>
       </DashboardLayout>
