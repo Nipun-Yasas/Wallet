@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { toast } from 'react-hot-toast'
 
 import DashboardLayout from '../../components/layouts/DashboardLayout'
 import useUserAuth from "../../hooks/useUserAuth";
@@ -44,7 +45,41 @@ export default function Income() {
   };
   
   //Handle Add Income
-  const handleAddIncome = async (income) => {};
+  const handleAddIncome = async (income) => {
+    const {source,amount,date,icon} = income;
+
+    //Validation checks
+    if(!source.trim()){
+      toast.error("Source is required.");
+      return;
+    }
+
+    if(!amount || isNaN(amount) || Number(amount) <= 0){
+      toast.error("Number should be a valid number greater than 0.");
+      return;
+    }
+
+    if(!date){
+      toast.error("Date is required.");
+      return;
+    }
+
+    try{
+      await axiosInstance.post(API_PATHS.INCOME.ADD_INCOME, {
+        source,
+        amount,
+        date,
+        icon,
+      });
+
+      setOpenAddIncomeModal(false);
+      toast.success("Income added successfully.");
+      fetchIncomeDetails();
+    }
+    catch(error){
+      console.error("Error adding income:",error.response?.data?.message || error.message);
+    }
+  };
 
   //Delete Income
   const deleteIncome = async (id) => {};

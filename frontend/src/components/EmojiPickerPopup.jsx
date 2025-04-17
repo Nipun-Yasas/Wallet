@@ -3,7 +3,7 @@ import Emogipicker from "emoji-picker-react"
 import { LuImage,LuX } from 'react-icons/lu'
 import { useState } from 'react'
 
-export default function EmojiPickerPopup({icon,onselect}) {
+export default function EmojiPickerPopup({icon,onSelect}) {
 
     const [isOpen,setIsOpen]=useState(false);
 
@@ -30,7 +30,7 @@ export default function EmojiPickerPopup({icon,onselect}) {
 
                 <Emogipicker
                 open={isOpen}
-                onEmojiClick={(emogi) => onselect(emogi?.imageUrl || "")}
+                onEmojiClick={(emogi) => onSelect(emogi?.imageUrl || "")}
                 />
             </div>
         )}

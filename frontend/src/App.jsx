@@ -8,6 +8,8 @@ import Income from './pages/Dashboard/Income'
 import Expense from './pages/Dashboard/Expense'
 import UserProvider from './context/UserContext'
 
+import { Toaster } from 'react-hot-toast'
+
 export default function App() {
 
   return (
@@ -24,6 +26,15 @@ export default function App() {
           </Routes>
         </Router>
       </div>
+
+      <Toaster
+      toastoptions={{
+        className: '',
+        style:{
+          fontSize:'13px'
+        },
+      }}
+      />
     </UserProvider>
   )
 }
