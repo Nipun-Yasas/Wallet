@@ -4,6 +4,7 @@ import DashboardLayout from '../../components/layouts/DashboardLayout'
 import axiosInstance from '../../utils/axiosInstance'
 import { API_PATHS } from '../../utils/apiPaths'
 import { toast } from 'react-hot-toast'
+import ExpenseOverview from '../../components/Expense/ExpenseOverview'
 
 export default function Expense() {
   useUserAuth()
@@ -93,6 +94,8 @@ export default function Expense() {
                 />
               </div>
             </div>
+
+            
           </div>
     </DashboardLayout>
   )
