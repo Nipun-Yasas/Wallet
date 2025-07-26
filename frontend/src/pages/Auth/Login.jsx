@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useState,useContext } from "react";
+import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import AuthLayout from "../../components/layouts/AuthLayout";
@@ -16,46 +16,42 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
-  const {updateUser} = useContext(UserContext);
+  const { updateUser } = useContext(UserContext);
   const navigate = useNavigate();
 
-  const handleLogin= async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
-    if(!validateEmail(email)){
-      setError("Please enter a valid email is not valid")
-      return
+    if (!validateEmail(email)) {
+      setError("Please enter a valid email is not valid");
+      return;
     }
-    if(!password){
-      setError("Please enter the password is required")
-      return
+    if (!password) {
+      setError("Please enter the password is required");
+      return;
     }
     setError("");
 
-    try{
-      const response = await axiosInstance.post(API_PATHS.AUTH.LOGIN,{
+    try {
+      const response = await axiosInstance.post(API_PATHS.AUTH.LOGIN, {
         email,
         password,
       });
 
-      const {token,user} = response.data;
+      const { token, user } = response.data;
 
-      if(token){
-        localStorage.setItem("token",token);
-        updateUser(user)
+      if (token) {
+        localStorage.setItem("token", token);
+        updateUser(user);
         navigate("/dashboard");
       }
-      
+    } catch (error) {
+      if (error.response && error.response.data.message) {
+        setError(error.response.data.message);
+      } else {
+        setError("Something went wrong.Please try again later");
+      }
     }
-    catch(error){
-        if(error.response && error.response.data.message){
-          setError(error.response.data.message);
-        }
-        else{
-          setError("Something went wrong.Please try again later")
-        }
-    }
-
   };
 
   return (
@@ -91,10 +87,12 @@ export default function Login() {
 
           <p className="text-[13px] text-slate-800 mt-3">
             Don't have an account?{" "}
-            <Link to="/signUp" className="font-medium text-(color:--primary) underline">
+            <Link
+              to="/signUp"
+              className="font-medium text-(color:--primary) underline"
+            >
               Sign Up
             </Link>
-
           </p>
         </form>
       </div>

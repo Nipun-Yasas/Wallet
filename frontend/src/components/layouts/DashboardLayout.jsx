@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 
 import { UserContext } from "../../context/UserContext";
-import NavBar from "./NavBar";
+import NavBar from "./Navbar";
 import SideMenu from "./SideMenu";
 
 export default function DashboardLayout({ children, activeMenu }) {
@@ -12,7 +12,7 @@ export default function DashboardLayout({ children, activeMenu }) {
 
       {user && (
         <div className="flex">
-          <div className="max-[1080px]:hidden ">
+          <div className="hidden lg:block">
             <SideMenu activeMenu={activeMenu} />
           </div>
 

@@ -28,15 +28,15 @@ export default function CustomPieChart({
           cx="50%"
           cy="50%"
           outerRadius={130}
-          innerRadius={130}
+          innerRadius={90}
           labelLine={false}
         >
           {data.map((entry, index) => (
             <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
           ))}
         </Pie>
-        <Tooltip content={CustomTooltip}/>
-        <Legend content={CustomLegend}/>
+        <Tooltip content={CustomTooltip} />
+        <Legend content={CustomLegend} />
 
         {showTextAnchor && (
           <>

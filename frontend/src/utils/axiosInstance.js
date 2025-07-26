@@ -28,14 +28,14 @@ axiosInstance.interceptors.response.use(
         return response;
     },
     (error) => {
-        if(error.response){
-            if (error.response.status === 401){
+        if (error.response) {
+            if (error.response.status === 401) {
                 window.location.href = '/login';
             }
-            else if(error.response.status === 500){
+            else if (error.response.status === 500) {
                 console.error("Server Error.Please try again later.");
             }
-            else if(error.code === "ECONNABORTED"){
+            else if (error.code === "ECONNABORTED") {
                 console.error("Request Timeout. Please try again.");
             }
             return Promise.reject(error)
