@@ -6,13 +6,13 @@ import { LuTrendingUpDown } from "react-icons/lu";
 export default function AuthLayout({ children }) {
   return (
     <div className="flex">
-      <div className="w-screen h-screen md:w-[60vw] px-12 pt-8 pb-12">
+      <div className="w-screen h-screen md:w-[80vw] lg:w-[60vw] px-6 sm:px-12 pt-8 pb-12">
         <h2 className="text-lg font-medium text-black">Expense Tracker</h2>
         {children}
       </div>
 
-      <div className="w-screen h-screen md:w-[60vw] px-12 pt-8 pb-12">
-        <div className="grid grid-cols-1 z-10">
+      <div className="hidden md:block w-screen h-screen md:w-[60vw] pr-5 pt-8 pb-12">
+        <div className="grid grid-cols-1 z-10 pb-10">
           <StatsInfoCard
             icon={<LuTrendingUpDown />}
             label="Track Your Income and Expenses"
@@ -20,7 +20,7 @@ export default function AuthLayout({ children }) {
           />
         </div>
 
-        <img src={CARD_2} className="w-full h-full object-cover" alt="card" />
+        <img src={CARD_2} className="h-[78vh] object-cover" alt="card" />
       </div>
     </div>
   );
